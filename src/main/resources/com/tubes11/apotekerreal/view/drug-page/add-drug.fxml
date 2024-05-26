@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.paint.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #ffffff;" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.obat.Add">
+    <children>
+      <ImageView fitHeight="400.0" fitWidth="600.0" pickOnBounds="true" smooth="false">
+         <image>
+            <Image url="@../../img/img_try.jpeg" />
+         </image>
+      </ImageView>
+        <TextField layoutX="125.0" layoutY="103.0" prefHeight="20.0" prefWidth="375.0" promptText="input drug's amount">
+            <font>
+                <Font name="Arial" size="10.0" />
+            </font>
+        </TextField>
+        <TextField layoutX="125.0" layoutY="125.0" prefHeight="20.0" prefWidth="375.0" promptText="input drug's price">
+            <font>
+                <Font name="Arial" size="10.0" />
+            </font>
+        </TextField>
+        <ComboBox layoutX="125.0" layoutY="175.0" prefHeight="20.0" prefWidth="375.0" promptText="Drug's type" />
+        <Label layoutX="25.0" layoutY="75.0" text="Name             :">
+            <font>
+                <Font name="Modern No. 20" size="15.0" />
+            </font>
+        </Label>
+        <Label layoutX="25.0" layoutY="100.0" text="Amount         :">
+            <font>
+                <Font name="Modern No. 20" size="15.0" />
+            </font>
+        </Label>
+        <Label layoutX="25.0" layoutY="125.0" text="Price             :">
+            <font>
+                <Font name="Modern No. 20" size="15.0" />
+            </font>
+        </Label>
+        <Label layoutX="25.0" layoutY="175.0" text="Type              :">
+            <font>
+                <Font name="Modern No. 20" size="15.0" />
+            </font>
+        </Label>
+        <ComboBox editable="true" layoutX="125.0" layoutY="75.0" prefHeight="20.0" prefWidth="375.0" promptText="input Drug's name" />
+        <Label layoutX="225.0" layoutY="25.0" text="Drug's Data">
+            <font>
+                <Font name="System Bold" size="21.0" />
+            </font>
+         <textFill>
+            <LinearGradient endX="1.0" endY="1.0" startX="1.0" startY="0.24290218413440212">
+               <stops>
+                  <Stop>
+                     <color>
+                        <Color green="1.0" blue="0.8039215803146362" />
+                     </color>
+                  </Stop>
+                  <Stop offset="1.0">
+                     <color>
+                        <Color />
+                     </color>
+                  </Stop>
+               </stops>
+            </LinearGradient>
+         </textFill>
+        </Label>
+        <Button layoutX="163.0" layoutY="225.0" mnemonicParsing="false" prefWidth="250.0" text="Add Drug">
+         <textFill>
+            <LinearGradient endX="1.0" endY="1.0" startX="1.0" startY="0.24290218413440212">
+               <stops>
+                  <Stop>
+                     <color>
+                        <Color green="1.0" blue="0.8039215803146362" />
+                     </color>
+                  </Stop>
+                  <Stop offset="1.0">
+                     <color>
+                        <Color />
+                     </color>
+                  </Stop>
+               </stops>
+            </LinearGradient>
+         </textFill>
+        </Button>
+        <Button layoutX="400.0" layoutY="320.0" mnemonicParsing="false" prefWidth="125.0" text="Back">
+         <textFill>
+            <LinearGradient endX="1.0" endY="1.0" startX="1.0" startY="0.24290218413440212">
+               <stops>
+                  <Stop>
+                     <color>
+                        <Color green="1.0" blue="0.8039215803146362" />
+                     </color>
+                  </Stop>
+                  <Stop offset="1.0">
+                     <color>
+                        <Color />
+                     </color>
+                  </Stop>
+               </stops>
+            </LinearGradient>
+         </textFill>
+        </Button>
+        <TextField layoutX="125.0" layoutY="150.0" prefHeight="20.0" prefWidth="375.0" promptText="input drug's location">
+            <font>
+                <Font name="Arial" size="10.0" />
+            </font>
+        </TextField>
+        <Label layoutX="25.0" layoutY="150.0" text="Location       :">
+            <font>
+                <Font name="Modern No. 20" size="15.0" />
+            </font>
+        </Label>
+      <Button layoutX="530.0" layoutY="1.0" mnemonicParsing="false" prefHeight="39.0" prefWidth="42.0">
+         <graphic>
+            <ImageView accessibleRole="BUTTON" fitHeight="54.0" fitWidth="96.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../img/home_img-removebg-preview.png" />
+               </image>
+            </ImageView>
+         </graphic>
+      </Button>
+    </children>
+</AnchorPane>
