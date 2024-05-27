@@ -6,7 +6,8 @@ import java.util.ArrayList;
 
 import javax.swing.JOptionPane;
 
-import com.tubes11.apotekerreal.model.DoctorInput;
+import com.tubes11.apotekerreal.dao.DoctorDAO;
+import com.tubes11.apotekerreal.model.Doctor;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -141,10 +142,10 @@ public class AddDoctorsController {
     private void addDoctorButtonOnAction(ActionEvent event){
         String name = doctorsNameTextField.getText();
         String address = specialicDoctorTextField.getText();
-        DoctorInput data = new DoctorInput(
-            name, address, this.jadwal
+        Doctor data = new Doctor(
+            0, name, address, this.jadwal
         );
-        DoctorInputDAO.addNewDocter(data);
+        DoctorDAO.addNewDoctor(data);
         JOptionPane.showMessageDialog(null, "JADWAL BERHASIL DITAMBAHKAN", "ADD DOCTOR SCEDULE MESSAGE", JOptionPane.INFORMATION_MESSAGE);
     }
     @FXML

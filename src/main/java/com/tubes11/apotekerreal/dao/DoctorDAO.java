@@ -7,6 +7,8 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.tubes11.apotekerreal.model.Doctor;;
+
 
 public class DoctorDAO {
     private Connection conn;
@@ -27,7 +29,7 @@ public class DoctorDAO {
             rs = statement.executeQuery();
             while (rs.next()) {
                 Doctor doctor = new Doctor();
-                docter.setId(rs.getInt("idDoctor"));
+                doctor.setIdDoctor(rs.getInt("idDoctor"));
                 doctor.setName(rs.getString("nameDoctor"));
 
                 doctorsList.add(doctor);
@@ -64,8 +66,8 @@ public class DoctorDAO {
             rs = statement.executeQuery();
 
             if (rs.next()) {
-                Doctor doctor = new Doctor();
-                doctor.setId(rs.getInt("idDoctor"));
+                Doctor doctor = new Doctor(idDocter, sql, sql, null);
+                doctor.setIdDoctor(rs.getInt("idDoctor"));
                 doctor.setName(rs.getString("nameDoctor"));
                 doctorsList.add(doctor);
             }
@@ -96,7 +98,7 @@ public class DoctorDAO {
             String sql = "INSERT INTO doctor (nameDoctor, spesialis) VALUES (?, ?)";
             statement = conn.prepareStatement(sql);
             statement.setString(1, doctor.getName());
-            statement.setString(2, doctor.getSpesialis());
+            statement.setString(2, doctor.getSpecialization());
             statement.executeUpdate();
             }catch(SQLException e){
                 e.printStackTrace();
@@ -130,4 +132,9 @@ public class DoctorDAO {
                 }
             }
         }
+
+    public static void addNewDoctor(Doctor data) {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'addNewDoctor'");
+    }
     }
