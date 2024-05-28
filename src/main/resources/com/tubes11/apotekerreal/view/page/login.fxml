@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.shape.Rectangle?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane accessibleRole="TEXT_AREA" focusTraversable="true" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="408.0" prefWidth="607.0" style="-fx-background-color: #ffffff;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.tubes11.apotekerreal.controller.LoginController">
+    <children>
+        <ImageView fx:id="bgImageView" fitHeight="408.0" fitWidth="643.0" pickOnBounds="true" preserveRatio="true">
+            <image>
+                <Image url="@../../img/apotek_try2.jpg" />
+            </image>
+        </ImageView>
+        <Label fx:id="titleLabel" layoutX="227.0" layoutY="28.0" text="LOGIN AKUN" textAlignment="CENTER" textFill="#139692" wrapText="true">
+            <font>
+                <Font name="Century" size="25.0" />
+            </font>
+        </Label>
+        <Label fx:id="subtitleLabel" layoutX="169.0" layoutY="60.0" prefHeight="19.0" prefWidth="294.0" text="Silahkan login untuk memulai aplikasi" textFill="#139692">
+            <font>
+                <Font name="Century Schoolbook" size="15.0" />
+            </font></Label>
+        <Rectangle fx:id="formRectangle" arcHeight="4.0" arcWidth="5.0" disable="true" fill="WHITE" height="264.0" layoutX="125.0" layoutY="98.0" opacity="0.5" stroke="WHITE" strokeWidth="20.0" style="-fx-stroke-type: 55;" width="363.0" />
+        <Label fx:id="nameLabel" alignment="TOP_CENTER" layoutX="257.0" layoutY="121.0" text="Complite Name">
+            <font>
+                <Font name="Arial Bold" size="13.0" />
+            </font>
+        </Label>
+        <TextField fx:id="nameTextField" layoutX="178.0" layoutY="142.0" onAction="#nameTextFieldOnAction" prefHeight="26.0" prefWidth="258.0" promptText="Enter Your Name" />
+        <Label fx:id="userIdLabel" alignment="TOP_CENTER" layoutX="256.0" layoutY="188.0" prefHeight="15.0" prefWidth="95.0" text="User id">
+            <font>
+                <Font name="Arial Bold" size="12.0" />
+            </font>
+        </Label>
+        <TextField fx:id="userIdTextField" layoutX="178.0" layoutY="206.0" onAction="#userIdTextFieldOnAction" prefHeight="26.0" prefWidth="258.0" promptText="Enter your Id" />
+        <PasswordField fx:id="passwordField" layoutX="178.0" layoutY="276.0" onAction="#passwordFieldOnAction" prefHeight="26.0" prefWidth="258.0" promptText="Enter your Password" />
+        <Label fx:id="passwordLabel" alignment="TOP_CENTER" layoutX="255.0" layoutY="260.0" prefHeight="15.0" prefWidth="95.0" text="Password">
+            <font>
+                <Font name="Arial Bold" size="12.0" />
+            </font>
+        </Label>
+        <Button fx:id="loginButton" layoutX="179.0" layoutY="319.0" mnemonicParsing="false" onAction="#loginButtonOnAction" prefHeight="30.0" prefWidth="258.0" style="-fx-background-color: #08E264;" text="LOGIN" textFill="WHITE">
+            <font>
+                <Font name="Arial Black" size="12.0" />
+            </font>
+            <opaqueInsets>
+                <Insets />
+            </opaqueInsets>
+        </Button>
+    </children>
+</AnchorPane>

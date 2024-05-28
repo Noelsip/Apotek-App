@@ -1,0 +1,214 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.CheckBox?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.paint.Color?>
+<?import javafx.scene.paint.LinearGradient?>
+<?import javafx.scene.paint.Stop?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.tubes11.apotekerreal.controller.AddDoctorsController">
+    <children>
+        <ImageView fx:id="bgImgVw" fitHeight="400.0" fitWidth="600.0" opacity="0.81">
+            <image>
+                <Image url="@../../../../../../../../img/docter_img.jpg" />
+            </image>
+        </ImageView>
+        <Button fx:id="homeButton" layoutX="552.0" layoutY="-1.0" mnemonicParsing="false" onAction="#homeButtonOnAction" prefHeight="26.0" prefWidth="28.0">
+            <graphic>
+            <ImageView fx:id="homeImgView" accessibleRole="BUTTON" fitHeight="54.0" fitWidth="32.0" pickOnBounds="true" preserveRatio="true">
+                <image>
+                    <Image url="@../../../../../../../../img/home_img-removebg-preview.png" />
+                </image>
+            </ImageView>
+            </graphic>
+        </Button>
+        <Text fontSmoothingType="LCD" layoutX="5.0" layoutY="58.0" stroke="#070017" strokeType="OUTSIDE" strokeWidth="0.0" text="DOCTOR SCHEDULE" textAlignment="CENTER" wrappingWidth="608.7018432617188">
+            <font>
+                <Font name="Swis721 WGL4 BT Bold" size="30.0" />
+            </font>
+            <fill>
+                <LinearGradient endX="1.0" endY="1.0" startX="1.0">
+                    <stops>
+                        <Stop>
+                            <color>
+                                <Color green="1.0" blue="0.8047618865966797" />
+                            </color>
+                        </Stop>
+                        <Stop offset="1.0">
+                            <color>
+                                <Color />
+                            </color>
+                        </Stop>
+                    </stops>
+                </LinearGradient>
+            </fill>
+        </Text>
+        <TextField fx:id="doctorsNameTextField" layoutX="195.0" layoutY="93.0" onAction="#doctorsNameTextFieldOnAction" prefHeight="13.0" prefWidth="228.0" promptText="Masukkan Nama Dokter" />
+        <Text layoutX="120.0" layoutY="110.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Nama      :" wrappingWidth="67.15199661254883">
+            <font>
+                <Font name="Modern No. 20" size="16.0" />
+            </font>
+        </Text>
+        <Text layoutX="121.0" layoutY="151.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Spesialis  :" wrappingWidth="82.15199661254883">
+            <font>
+                <Font name="Modern No. 20" size="16.0" />
+            </font>
+        </Text>
+        <TextField fx:id="specialicDoctorTextField" layoutX="195.0" layoutY="134.0" onAction="#specialicDoctorTextFieldOnAction" prefHeight="13.0" prefWidth="228.0" promptText="Masukkan Spesialis Dokter" />
+        <CheckBox fx:id="monDayCheckBox" layoutX="196.0" layoutY="178.0" mnemonicParsing="false" onAction="#monDayCheckBoxOnAction" text="Senin">
+            <textFill>
+                <LinearGradient endX="1.0" endY="1.0">
+                    <stops>
+                        <Stop>
+                            <color>
+                                <Color />
+                            </color>
+                        </Stop>
+                        <Stop offset="1.0">
+                            <color>
+                                <Color />
+                            </color>
+                        </Stop>
+                    </stops>
+                </LinearGradient>
+            </textFill>
+            <font>
+                <Font name="NBA Bulls" size="12.0" />
+            </font>
+        </CheckBox>
+        <Text layoutX="121.0" layoutY="191.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Jadwal    :" wrappingWidth="67.15199661254883">
+            <font>
+                <Font name="Modern No. 20" size="16.0" />
+            </font>
+        </Text>
+        <CheckBox fx:id="tuesDayCheckBox" layoutX="196.0" layoutY="203.0" mnemonicParsing="false" onAction="#tuesDayCheckBoxOnAction" text="Selasa">
+            <textFill>
+                <LinearGradient endX="1.0" endY="1.0">
+                    <stops>
+                        <Stop>
+                            <color>
+                                <Color />
+                            </color>
+                        </Stop>
+                        <Stop offset="1.0">
+                            <color>
+                                <Color />
+                            </color>
+                        </Stop>
+                    </stops>
+                </LinearGradient>
+            </textFill>
+            <font>
+                <Font name="NBA Bulls" size="12.0" />
+            </font>
+        </CheckBox>
+        <CheckBox fx:id="wedDayCheckBox" layoutX="196.0" layoutY="227.0" mnemonicParsing="false" onAction="#wedDayCheckBoxOnAction" text="Rabu">
+            <textFill>
+                <LinearGradient endX="1.0" endY="1.0">
+                    <stops>
+                        <Stop>
+                            <color>
+                                <Color />
+                            </color>
+                        </Stop>
+                        <Stop offset="1.0">
+                            <color>
+                                <Color />
+                            </color>
+                        </Stop>
+                    </stops>
+                </LinearGradient>
+            </textFill>
+            <font>
+                <Font name="NBA Bulls" size="12.0" />
+            </font>
+        </CheckBox>
+        <CheckBox fx:id="thursDayCheckBox" layoutX="271.0" layoutY="178.0" mnemonicParsing="false" onAction="#thursDayCheckBoxOnAction" text="kamis">
+            <textFill>
+                <LinearGradient endX="1.0" endY="1.0">
+                    <stops>
+                        <Stop>
+                            <color>
+                                <Color />
+                            </color>
+                        </Stop>
+                        <Stop offset="1.0">
+                            <color>
+                                <Color />
+                            </color>
+                        </Stop>
+                    </stops>
+                </LinearGradient>
+            </textFill>
+            <font>
+                <Font name="NBA Bulls" size="12.0" />
+            </font>
+        </CheckBox>
+        <CheckBox fx:id="friDayCheckBox" layoutX="271.0" layoutY="202.0" mnemonicParsing="false" onAction="#friDayCheckBoxOnAction" text="jum'at">
+            <textFill>
+                <LinearGradient endX="1.0" endY="1.0">
+                    <stops>
+                        <Stop>
+                            <color>
+                                <Color />
+                            </color>
+                        </Stop>
+                        <Stop offset="1.0">
+                            <color>
+                                <Color />
+                            </color>
+                        </Stop>
+                    </stops>
+                </LinearGradient>
+            </textFill>
+            <font>
+                <Font name="NBA Bulls" size="12.0" />
+            </font>
+        </CheckBox>
+        <Button fx:id="addDoctorButton" alignment="CENTER" layoutX="219.0" layoutY="256.0" mnemonicParsing="false" onAction="#addDoctorButtonOnAction" prefHeight="26.0" prefWidth="180.0" text="Add Doctor" textAlignment="CENTER">
+            <textFill>
+                <LinearGradient endX="1.0" endY="1.0" startX="1.0">
+                    <stops>
+                        <Stop>
+                            <color>
+                                <Color />
+                            </color>
+                        </Stop>
+                        <Stop offset="1.0">
+                            <color>
+                                <Color red="0.12670564651489258" green="0.6842105388641357" blue="0.31254062056541443" />
+                            </color>
+                        </Stop>
+                    </stops>
+                </LinearGradient>
+            </textFill>
+            <font>
+                <Font name="Swis721 BT Roman" size="12.0" />
+            </font>
+        </Button>
+        <Button fx:id="dSceduleBackButton" layoutX="481.0" layoutY="359.0" mnemonicParsing="false" onAction="#dSceduleBackButtonOnAction" prefHeight="26.0" prefWidth="94.0" text="Back">
+            <textFill>
+                <LinearGradient endX="1.0" endY="1.0" startX="1.0">
+                    <stops>
+                        <Stop>
+                            <color>
+                                <Color />
+                            </color>
+                        </Stop>
+                        <Stop offset="1.0">
+                            <color>
+                                <Color red="0.12670564651489258" green="0.6842105388641357" blue="0.31254062056541443" />
+                            </color>
+                        </Stop>
+                    </stops>
+                </LinearGradient>
+            </textFill>
+        </Button>
+    </children>
+</AnchorPane>
