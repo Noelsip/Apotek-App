@@ -10,7 +10,7 @@
 <?import javafx.scene.paint.Stop?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #194be3;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #194be3;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.tubes11.apotekerreal.controller.DrugsController">
     <children>
       <ImageView fitHeight="400.0" fitWidth="600.0" pickOnBounds="true" smooth="false">
          <image>
@@ -38,7 +38,7 @@
             </LinearGradient>
          </textFill>
       </Label>
-        <Button layoutX="180.0" layoutY="100.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="200.0" text="Add Drugs">
+        <Button fx:id="addDrugsButton" layoutX="180.0" layoutY="100.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="200.0" text="Add Drugs">
          <textFill>
             <LinearGradient endX="1.0" endY="1.0" startX="1.0" startY="0.23659305993690852">
                <stops>
@@ -56,7 +56,7 @@
             </LinearGradient>
          </textFill>
         </Button>
-        <Button layoutX="180.0" layoutY="138.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="200.0" text="Change Price A Drug">
+        <Button fx:id="drugsChangePriceButton" layoutX="180.0" layoutY="138.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="200.0" text="Change Price A Drug">
          <textFill>
             <LinearGradient endX="1.0" endY="1.0" startX="1.0" startY="0.23659305993690852">
                <stops>
@@ -74,7 +74,7 @@
             </LinearGradient>
          </textFill>
         </Button>
-        <Button layoutX="180.0" layoutY="175.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="200.0" text="Change Drug's Location">
+        <Button fx:id="drugsDeleteButton" layoutX="180.0" layoutY="175.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="200.0" text="Delete A Drug">
          <textFill>
             <LinearGradient endX="1.0" endY="1.0" startX="1.0" startY="0.23659305993690852">
                <stops>
@@ -92,7 +92,7 @@
             </LinearGradient>
          </textFill>
         </Button>
-        <Button layoutX="180.0" layoutY="213.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="200.0" text="Delete A drug">
+        <Button fx:id="drugsStockButton" layoutX="180.0" layoutY="213.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="200.0" text="Drug's Stock">
          <textFill>
             <LinearGradient endX="1.0" endY="1.0" startX="1.0" startY="0.23659305993690852">
                <stops>
@@ -110,25 +110,7 @@
             </LinearGradient>
          </textFill>
         </Button>
-        <Button layoutX="180.0" layoutY="250.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="200.0" text="Drug's Stock">
-         <textFill>
-            <LinearGradient endX="1.0" endY="1.0" startX="1.0" startY="0.23659305993690852">
-               <stops>
-                  <Stop>
-                     <color>
-                        <Color green="1.0" blue="0.8039215803146362" />
-                     </color>
-                  </Stop>
-                  <Stop offset="1.0">
-                     <color>
-                        <Color />
-                     </color>
-                  </Stop>
-               </stops>
-            </LinearGradient>
-         </textFill>
-        </Button>
-        <Button layoutX="180.0" layoutY="288.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="200.0" text="Back">
+        <Button fx:id="backDrugsButton" layoutX="180.0" layoutY="250.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="200.0" text="Back">
          <textFill>
             <LinearGradient endX="1.0" endY="1.0" startX="1.0" startY="0.23659305993690852">
                <stops>

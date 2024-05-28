@@ -13,7 +13,7 @@
 <?import javafx.scene.paint.Stop?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #194be3;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.obat.DrugStorage">
+<AnchorPane prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #194be3;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.tubes11.apotekerreal.controller.DrugsStorageController">
     <children>
       <ImageView fitHeight="400.0" fitWidth="600.0" pickOnBounds="true" smooth="false">
          <image>
@@ -41,8 +41,8 @@
             </LinearGradient>
          </textFill>
       </Label>
-        <TextField layoutX="50.0" layoutY="63.0" prefHeight="15.0" prefWidth="375.0" promptText="Drug's name" />
-        <Button layoutX="446.0" layoutY="63.0" mnemonicParsing="false" prefHeight="15.0" prefWidth="75.0" text="Search">
+        <TextField fx:id="drugsNameTextField" layoutX="50.0" layoutY="63.0" prefHeight="15.0" prefWidth="375.0" promptText="Drug's name" />
+        <Button fx:id="drugStorageSearchButton" layoutX="446.0" layoutY="63.0" mnemonicParsing="false" prefHeight="15.0" prefWidth="75.0" text="Search">
          <textFill>
             <LinearGradient endX="1.0" endY="1.0" startX="1.0" startY="0.24290218413440212">
                <stops>
@@ -64,9 +64,9 @@
                </stops>
             </LinearGradient>
          </textFill></Button>
-        <ListView layoutX="50.0" layoutY="100.0" prefHeight="175.0" prefWidth="475.0" />
-        <ScrollBar layoutX="513.0" layoutY="100.0" orientation="VERTICAL" prefHeight="175.0" prefWidth="13.0" />
-      <Button layoutX="400.0" layoutY="320.0" mnemonicParsing="false" prefWidth="125.0" text="Back">
+        <ListView fx:id="drugsStorageListView" layoutX="50.0" layoutY="100.0" prefHeight="175.0" prefWidth="475.0" />
+        <ScrollBar fx:id="drugStorageScrollBar" layoutX="513.0" layoutY="100.0" orientation="VERTICAL" prefHeight="175.0" prefWidth="13.0" />
+      <Button fx:id="drugsStorageBackButton" layoutX="400.0" layoutY="320.0" mnemonicParsing="false" prefWidth="125.0" text="Back">
          <textFill>
             <LinearGradient endX="1.0" endY="1.0" startX="1.0" startY="0.24290218413440212">
                <stops>

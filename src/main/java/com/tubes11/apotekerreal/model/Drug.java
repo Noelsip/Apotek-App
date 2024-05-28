@@ -1,14 +1,22 @@
 package com.tubes11.apotekerreal.model;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class Drug {
     private String namaObat;
-    private int jumlahObat;
+    private static int jumlahObat;
     private double hargaObat;
+    private static List<Drug> drugs;
 
     public Drug(String namaObat, int jumlahObat, double hargaObat) {
         this.namaObat = namaObat;
         this.jumlahObat = jumlahObat;
         this.hargaObat = hargaObat;
+    }
+
+    public Drug(){
+        drugs = new ArrayList<>();
     }
 
     public String getNamaObat() {
@@ -19,7 +27,7 @@ public class Drug {
         this.namaObat = namaObat;
     }
 
-    public int getJumlahObat() {
+    public static int getJumlahObat(String namaObat) {
         return jumlahObat;
     }
 
