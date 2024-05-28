@@ -11,7 +11,7 @@
 <?import javafx.scene.paint.Stop?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #194be3;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.obat.DeleteADrug">
+<AnchorPane prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #194be3;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.tubes11.apotekerreal.controller.DeleteDrugsController">
     <children>
       <ImageView fitHeight="400.0" fitWidth="600.0" pickOnBounds="true" smooth="false">
          <image>
@@ -44,8 +44,8 @@
             <Font name="Modern No. 20" size="15.0" />
          </font>
       </Label>
-        <ComboBox layoutX="125.0" layoutY="75.0" prefHeight="20.0" prefWidth="375.0" promptText="Input Drug's name" />
-      <Button layoutX="163.0" layoutY="225.0" mnemonicParsing="false" prefWidth="250.0" text="Delete">
+        <ComboBox fx:id="drugsNameComboBox" layoutX="125.0" layoutY="75.0" prefHeight="20.0" prefWidth="375.0" promptText="Input Drug's name" />
+      <Button fx:id="deleteDrugsButton" layoutX="163.0" layoutY="225.0" mnemonicParsing="false" prefWidth="250.0" text="Delete">
          <textFill>
             <LinearGradient endX="1.0" endY="1.0" startX="1.0" startY="0.24290218413440212">
                <stops>
@@ -68,8 +68,8 @@
             <Font name="Modern No. 20" size="15.0" />
          </font>
       </Label>
-        <ComboBox editable="true" layoutX="125.0" layoutY="110.0" prefHeight="20.0" prefWidth="375.0" promptText="Input Drug's Amount" />
-      <Button layoutX="400.0" layoutY="320.0" mnemonicParsing="false" prefWidth="125.0" text="Back">
+        <ComboBox fx:id="drugsAmountComboBox" editable="true" layoutX="125.0" layoutY="110.0" prefHeight="20.0" prefWidth="375.0" promptText="Input Drug's Amount" />
+      <Button fx:id="deleteDrugsBackButton" layoutX="400.0" layoutY="320.0" mnemonicParsing="false" prefWidth="125.0" text="Back">
          <textFill>
             <LinearGradient endX="1.0" endY="1.0" startX="1.0" startY="0.24290218413440212">
                <stops>
@@ -87,14 +87,6 @@
             </LinearGradient>
          </textFill>
       </Button>
-      <Button layoutX="530.0" layoutY="1.0" mnemonicParsing="false" prefHeight="39.0" prefWidth="42.0">
-         <graphic>
-            <ImageView accessibleRole="BUTTON" fitHeight="54.0" fitWidth="96.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@../../img/home_img-removebg-preview.png" />
-               </image>
-            </ImageView>
-         </graphic>
-      </Button>
+      <Button fx:id="drugsDeleteHomeButton" layoutX="558.0" layoutY="1.0" mnemonicParsing="false" prefHeight="39.0" prefWidth="42.0" />
     </children>
 </AnchorPane>
