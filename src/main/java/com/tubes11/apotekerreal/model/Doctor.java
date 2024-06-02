@@ -3,58 +3,57 @@ package com.tubes11.apotekerreal.model;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Doctor {
+public class Doctor extends Entity {
     private int idDoctor;
-    private String name;
-    private String specialization;
-    private ArrayList<String> jadwal;
+    private int idScedule;
+    private ArrayList<String> selectedDays;
     private static List<Doctor> doctors;
 
-    public Doctor(int idDoctor, String name, String specialization, ArrayList<String> jadwal) {
+    public Doctor(int idDoctor,int idScedule, String doctorName, String specialization, String doctorScedule, ArrayList<String> selectedDays) {
+        super(doctorName, specialization, doctorScedule);
         this.idDoctor = idDoctor;
-        this.name = name;
-        this.specialization = specialization;
-        this.jadwal = jadwal;
+        this.idScedule = idScedule;
+        this.selectedDays = selectedDays;
     }
 
     public Doctor(){
+        super("","","");
+        this.idDoctor = 0;
         doctors = new ArrayList<>();
     }
     public int getIdDoctor(){
         return idDoctor;
     }
+
+    public ArrayList<String> getSelectedDays() {
+        return selectedDays;
+    }
+
+    public int getIdScedule(){
+        return idScedule;
+    }
+
     public void setIdDoctor(int idDoctor){
         this.idDoctor = idDoctor;
     }
-    public String getName() {
-        return name;
+
+    public void setIdScedule(int idScedule){
+        this.idScedule = idScedule;
     }
 
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public String getSpecialization() {
-        return specialization;
-    }
-
-    public void setSpecialization(String specialization) {
-        this.specialization = specialization;
-    }
-
-    public ArrayList<String> getJadwal() {
-        return jadwal;
-    }
-
-    public void setJadwal(ArrayList<String> jadwal) {
-        this.jadwal = jadwal;
+    public void setSelectedDays(ArrayList<String> selectedDays) {
+        this.selectedDays = selectedDays;
     }
 
     public static void addNewDoctor(Doctor data){
         doctors.add(data);
     }
-
+    
     static {
         doctors = new ArrayList<>();
     }
+    
+
 }
+
+

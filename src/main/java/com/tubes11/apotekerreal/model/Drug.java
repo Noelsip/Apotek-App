@@ -5,7 +5,7 @@ import java.util.List;
 
 public class Drug {
     private String namaObat;
-    private static int jumlahObat;
+    private  static int jumlahObat;
     private double hargaObat;
     private static List<Drug> drugs;
 
@@ -27,7 +27,7 @@ public class Drug {
         this.namaObat = namaObat;
     }
 
-    public static int getJumlahObat(String namaObat) {
+    public static  int getJumlahObat(String namaObat) {
         return jumlahObat;
     }
 

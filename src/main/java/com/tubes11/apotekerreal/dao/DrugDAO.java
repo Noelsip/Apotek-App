@@ -7,12 +7,12 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.tubes11.apotekerreal.model.Doctor;
+// import com.tubes11.apotekerreal.model.Doctor
 import com.tubes11.apotekerreal.model.Drug;;
 
 
 public class DrugDAO {
-     private Connection conn;
+    private static Connection conn;
     
     // Constructor
     public DrugDAO(Connection conn){
@@ -68,7 +68,7 @@ public class DrugDAO {
             rs = statement.executeQuery();
 
             if (rs.next()) {
-                Drug drug = new Drug(namaObat,null,null);
+                Drug drug = new Drug();
                 drug.setNamaObat(rs.getString("drugName"));
                 drug.setJumlahObat(rs.getInt("drugAmount"));
                 drug.setHargaObat(rs.getDouble("drugPrice"));
@@ -120,7 +120,7 @@ public class DrugDAO {
         PreparedStatement statement = null;
         try{
             String sql = "DELETE FROM drug WHERE namaObat = ?";
-            // statement = conn.prepareStatement(sql);
+            statement = conn.prepareStatement(sql);
             statement.setString(1, namaObat);
             statement.executeUpdate();
             }catch(SQLException e){

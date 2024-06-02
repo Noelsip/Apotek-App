@@ -2,10 +2,14 @@ package com.tubes11.apotekerreal.controller;
 
 import java.io.File;
 import java.io.IOException;
+import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
 import javax.swing.JOptionPane;
 
+import com.tubes11.apotekerreal.dao.Connector;
 import com.tubes11.apotekerreal.dao.DoctorDAO;
 import com.tubes11.apotekerreal.model.Doctor;
 
@@ -23,7 +27,6 @@ import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
 
 public class AddDoctorsController {
-    private ArrayList<String> jadwal = new ArrayList<>();
     @FXML
     private ImageView bgImgVw;
     @FXML
@@ -39,16 +42,16 @@ public class AddDoctorsController {
     @FXML
     private TextField specialicDoctorTextField;
     @FXML
-    private CheckBox monDayCheckBox;
+    private CheckBox monDayCheckBox,tuesDayCheckBox, wedDayCheckBox, thursDayCheckBox, friDayCheckBox;
     @FXML
-    private CheckBox tuesDayCheckBox;
-    @FXML
-    private CheckBox wedDayCheckBox;
-    @FXML
-    private CheckBox thursDayCheckBox;
-    @FXML
-    private CheckBox friDayCheckBox;
+    private List<CheckBox> checkBoxes;
+
+    private ArrayList<String> jadwal;
+    private DoctorDAO doctorDAO;
     
+    public AddDoctorsController(){
+        doctorDAO = new DoctorDAO(Connector.getConnection());
+    }
 
 
     @FXML
@@ -86,67 +89,37 @@ public class AddDoctorsController {
     }
 
     @FXML
-    private void monDayCheckBoxOnAction(ActionEvent event){
-        if(monDayCheckBox.isSelected()){
-            System.out.println("Monday Selected");
-            this.jadwal.add("monday");
-            
-        }else{
-            System.out.println("Monday Selected is Cancel");
-            this.jadwal.remove("monday");
-        }
+    private void scheduleCheckBoxOnAction(ActionEvent event){
+    checkBoxes = Arrays.asList(monDayCheckBox, tuesDayCheckBox,wedDayCheckBox, thursDayCheckBox, friDayCheckBox);
+    jadwal = new ArrayList<>();
+    CheckBox checkBox = (CheckBox)  event.getSource();
+    String day = checkBox.getText().toLowerCase();
+
+    if (checkBox.isSelected()) {
+        System.out.println(day + " Selected");
+        jadwal.add(day);
+    } else{
+        System.out.println(day + " Selected is Cancel");
     }
-    @FXML
-    private void tuesDayCheckBoxOnAction(ActionEvent event){
-        if(tuesDayCheckBox.isSelected()){
-            System.out.println("Tuesday Selected");
-            this.jadwal.add("tuesday");
-        }else{
-            System.out.println("Tuesday Selected is Cancel");
-            this.jadwal.remove("tuesday");
-        }
-    }
-    @FXML
-    private void wedDayCheckBoxOnAction(ActionEvent event){
-        if(wedDayCheckBox.isSelected()){
-            System.out.println("Wednesday Selected");
-            this.jadwal.add("wednesday");
-        }else{
-            System.out.println("Wednesday Selected is Cancel");
-            this.jadwal.remove("wednesday");
-        }
-    }
-    @FXML
-    private void thursDayCheckBoxOnAction(ActionEvent event){
-        if(thursDayCheckBox.isSelected()){
-            System.out.println("Thursday Selected");
-            this.jadwal.add("thursday");
-        }else{
-            System.out.println("Thursday Selected is Cancel");
-            this.jadwal.remove("thursday");
-        }
-    }
-    @FXML
-    private void friDayCheckBoxOnAction(ActionEvent event){
-        if(friDayCheckBox.isSelected()){
-            System.out.println("Friday Selected");
-            this.jadwal.add("friday");
-        } else{
-            System.out.println("Friday Selected is Cancel");
-            this.jadwal.remove("friday");
-        }
-    }
+}
 
     @FXML
-    //To MESSAGE AFTER BUTTON ADD IN ACTION
-    private void addDoctorButtonOnAction(ActionEvent event){
+    private void addDoctorButtonOnAction(ActionEvent event) throws SQLException{
         String name = doctorsNameTextField.getText();
-        String address = specialicDoctorTextField.getText();
-        Doctor data = new Doctor(
-            0, name, address, this.jadwal
-        );
-        DoctorDAO.addNewDoctor(data);
-        JOptionPane.showMessageDialog(null, "JADWAL BERHASIL DITAMBAHKAN", "ADD DOCTOR SCEDULE MESSAGE", JOptionPane.INFORMATION_MESSAGE);
+        String specialization = specialicDoctorTextField.getText();
+        ArrayList<String> selectedDays = new ArrayList<>();
+
+        Doctor data = new Doctor(0, 0, name, specialization, "", selectedDays);
+        DoctorDAO.addDoctor(data);
+        
+        try{
+            DoctorDAO.addDoctor(data);
+            JOptionPane.showMessageDialog(null, "JADWAL BERHASIL DITAMBAHKAN", "ADD DOCTOR SCEDULE MESSAGE", JOptionPane.INFORMATION_MESSAGE);
+        } catch (SQLException e){
+            JOptionPane.showMessageDialog(null, "Error inserting data: " + e.getMessage(), " Error", JOptionPane.ERROR_MESSAGE);
+        }
+
+
     }
     @FXML
     // Button Back Option Doctor

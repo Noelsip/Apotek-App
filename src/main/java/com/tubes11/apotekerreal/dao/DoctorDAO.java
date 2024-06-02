@@ -7,134 +7,91 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.tubes11.apotekerreal.model.Doctor;;
-
+import com.tubes11.apotekerreal.model.Doctor;
 
 public class DoctorDAO {
-    private Connection conn;
-    
+    private static Connection connection;
+
     // Constructor
-    public DoctorDAO(Connection conn){
-        this.conn = conn;
+    public DoctorDAO(Connection connection) {
+        DoctorDAO.connection = connection;
     }
 
-    public List<Doctor> getAllDoctors() throws SQLException{
-        List<Doctor> doctorsList = new ArrayList<>();
+    public static void addDoctor(Doctor doctor) throws SQLException{
         PreparedStatement statement = null;
-        ResultSet rs = null;
-        
-        try{
-            String sql = "SELECT * FROM doctor";
-            statement = conn.prepareStatement(sql);
-            rs = statement.executeQuery();
-            while (rs.next()) {
-                Doctor doctor = new Doctor();
-                doctor.setIdDoctor(rs.getInt("idDoctor"));
-                doctor.setName(rs.getString("nameDoctor"));
 
-                doctorsList.add(doctor);
+        try{
+            // Insert Doctor
+            String doctorQuery = "INSERT INTO doctor (idDoctor, nameDoctor, spesialis) VALUES (?,?,?)";
+            statement = connection.prepareStatement(doctorQuery, statement.RETURN_GENERATED_KEYS);
+            statement.setInt(1, 0);
+            statement.setString(2, doctor.getDoctorName());
+            statement.setString(3, doctor.getSpecialization());
+            statement.executeUpdate();
+
+            // get the generated idDoctor value
+            ResultSet generatedKeys = statement.getGeneratedKeys();
+            if (generatedKeys.next()) {
+                int idDoctor = generatedKeys.getInt(1);
+                doctor.setIdDoctor(idDoctor);
+
+                // Insert Scedule
+                String sceduleQuery = "INSERT INTO jadwal (idJadwal, idDoctor, jadwal) VALUES (?,?,?)";
+                statement = connection.prepareStatement(sceduleQuery);
+                statement.setInt(1, doctor.getIdDoctor());
+                statement.setInt(2, doctor.getIdDoctor());
+                statement.setString(3, doctor.getDoctorScedule());
+                statement.executeUpdate();
             }
-        }catch(SQLException e){
+            
+        } catch (SQLException e){
             e.printStackTrace();
-        }finally{
-            if (rs != null) {
-                try{
-                    rs.close();
-                } catch(SQLException e){
-                    e.printStackTrace();
-                }
-            }
+        } finally{
             if (statement != null) {
                 try{
                     statement.close();
-                    } catch(SQLException e){
-                        e.printStackTrace();
+                } catch (SQLException e){
+                    e.printStackTrace();
                 }
             }
         }
-        return doctorsList;
     }
 
-    public List<Doctor> getDoctorById(int idDocter){
+    public List<Doctor> getDoctorById (int idDoctor) throws SQLException{
         List<Doctor> doctorsList = new ArrayList<>();
         PreparedStatement statement = null;
-        ResultSet rs = null;
-        try{
-            String sql = "SELECT * FROM doctor WHERE idDoctor = ?";
-            statement = conn.prepareStatement(sql);
-            statement.setInt(1, idDocter);
-            rs = statement.executeQuery();
+        ResultSet resultSet = null;
 
-            if (rs.next()) {
-                Doctor doctor = new Doctor(idDocter, sql, sql, null);
-                doctor.setIdDoctor(rs.getInt("idDoctor"));
-                doctor.setName(rs.getString("nameDoctor"));
+        try{
+            String quary = "SELECT * FROM doctor WHERE idDoctor = ?";
+            statement = connection.prepareStatement(quary);
+            statement.setInt(1, idDoctor);
+            resultSet = statement.executeQuery();
+
+            while(resultSet.next()) {
+                Doctor doctor = new Doctor();
+                doctor.setIdDoctor(resultSet.getInt("idDoctor"));
+                doctor.setDoctorName(resultSet.getString("nameDoctor"));
+                doctor.setSpecialization(resultSet.getString("spesialis"));
+                doctor.setDoctorScedule(resultSet.getString("jadwal"));
                 doctorsList.add(doctor);
             }
-            }catch(SQLException e){
-                e.printStackTrace();
-                } finally{
-                    if (rs != null) {
-                        try{
-                            rs.close();
-                        } catch(SQLException e){
-                            e.printStackTrace();
-                        }
-                    }
-                    if (statement != null) {
-                        try{
-                            statement.close();
-                        }catch(SQLException e){
-                            e.printStackTrace();
-                        }
-                    }
+        } catch (SQLException e){
+            e.printStackTrace();
+        } finally{
+            if (resultSet != null) {
+                try{
+                    resultSet.close();
+                } catch (SQLException e){
+                    e.printStackTrace();
                 }
-                return doctorsList;
-        }
-    
-    public void addDoctor(Doctor doctor) throws SQLException{
-        PreparedStatement statement = null;
-        try{
-            String sql = "INSERT INTO doctor (nameDoctor, spesialis) VALUES (?, ?)";
-            statement = conn.prepareStatement(sql);
-            statement.setString(1, doctor.getName());
-            statement.setString(2, doctor.getSpecialization());
-            statement.executeUpdate();
-            }catch(SQLException e){
-                e.printStackTrace();
-            } finally{
-                if (statement != null) {
-                    try{
-                        statement.close();
-                    } catch (SQLException e){
-                        e.printStackTrace();
-                    }
+            } if (statement != null) {
+                try{
+                    statement.close();
+                } catch (SQLException e){
+                    e.printStackTrace();
                 }
             }
-        }
-
-    public void deleteDoctor(int idDocter) throws SQLException{
-        PreparedStatement statement = null;
-        try{
-            String sql = "DELETE FROM doctor WHERE idDoctor = ?";
-            statement = conn.prepareStatement(sql);
-            statement.setInt(1, idDocter);
-            statement.executeUpdate();
-            }catch(SQLException e){
-                e.printStackTrace();
-            } finally{
-                if (statement != null) {
-                    try{
-                        statement.close();
-                    } catch (SQLException e){
-                        e.printStackTrace();
-                    }
-                }
-            }
-        }
-
-    public static void addNewDoctor(Doctor data) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'addNewDoctor'");
+        } return doctorsList;
     }
-    }
+}

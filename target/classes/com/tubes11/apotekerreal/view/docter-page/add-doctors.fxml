@@ -61,7 +61,7 @@
             </font>
         </Text>
         <TextField fx:id="specialicDoctorTextField" layoutX="195.0" layoutY="134.0" onAction="#specialicDoctorTextFieldOnAction" prefHeight="13.0" prefWidth="228.0" promptText="Masukkan Spesialis Dokter" />
-        <CheckBox fx:id="monDayCheckBox" layoutX="196.0" layoutY="178.0" mnemonicParsing="false" onAction="#monDayCheckBoxOnAction" text="Senin">
+        <CheckBox fx:id="monDayCheckBox" layoutX="196.0" layoutY="178.0" mnemonicParsing="false" onAction="#scheduleCheckBoxOnAction" text="Senin">
             <textFill>
                 <LinearGradient endX="1.0" endY="1.0">
                     <stops>
@@ -87,7 +87,7 @@
                 <Font name="Modern No. 20" size="16.0" />
             </font>
         </Text>
-        <CheckBox fx:id="tuesDayCheckBox" layoutX="196.0" layoutY="203.0" mnemonicParsing="false" onAction="#tuesDayCheckBoxOnAction" text="Selasa">
+        <CheckBox fx:id="tuesDayCheckBox" layoutX="196.0" layoutY="203.0" mnemonicParsing="false" onAction="#scheduleCheckBoxOnAction" text="Selasa">
             <textFill>
                 <LinearGradient endX="1.0" endY="1.0">
                     <stops>
@@ -108,7 +108,7 @@
                 <Font name="NBA Bulls" size="12.0" />
             </font>
         </CheckBox>
-        <CheckBox fx:id="wedDayCheckBox" layoutX="196.0" layoutY="227.0" mnemonicParsing="false" onAction="#wedDayCheckBoxOnAction" text="Rabu">
+        <CheckBox fx:id="wedDayCheckBox" layoutX="196.0" layoutY="227.0" mnemonicParsing="false" onAction="#scheduleCheckBoxOnAction" text="Rabu">
             <textFill>
                 <LinearGradient endX="1.0" endY="1.0">
                     <stops>
@@ -129,7 +129,7 @@
                 <Font name="NBA Bulls" size="12.0" />
             </font>
         </CheckBox>
-        <CheckBox fx:id="thursDayCheckBox" layoutX="271.0" layoutY="178.0" mnemonicParsing="false" onAction="#thursDayCheckBoxOnAction" text="kamis">
+        <CheckBox fx:id="thursDayCheckBox" layoutX="271.0" layoutY="178.0" mnemonicParsing="false" onAction="#scheduleCheckBoxOnAction" text="kamis">
             <textFill>
                 <LinearGradient endX="1.0" endY="1.0">
                     <stops>
@@ -150,7 +150,7 @@
                 <Font name="NBA Bulls" size="12.0" />
             </font>
         </CheckBox>
-        <CheckBox fx:id="friDayCheckBox" layoutX="271.0" layoutY="202.0" mnemonicParsing="false" onAction="#friDayCheckBoxOnAction" text="jum'at">
+        <CheckBox fx:id="friDayCheckBox" layoutX="271.0" layoutY="202.0" mnemonicParsing="false" onAction="#scheduleCheckBoxOnAction" text="jum'at">
             <textFill>
                 <LinearGradient endX="1.0" endY="1.0">
                     <stops>
