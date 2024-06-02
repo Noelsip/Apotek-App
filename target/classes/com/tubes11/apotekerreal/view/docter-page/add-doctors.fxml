@@ -14,20 +14,12 @@
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.tubes11.apotekerreal.controller.AddDoctorsController">
     <children>
-        <ImageView fx:id="bgImgVw" fitHeight="400.0" fitWidth="600.0" opacity="0.81">
+        <ImageView fx:id="bgImgVw" fitHeight="400.0" fitWidth="600.0">
             <image>
-                <Image url="@../../../../../../../../img/docter_img.jpg" />
+                <Image url="@../../../../../../java/com/tubes11/apotekerreal/img/docter_img.jpg" />
             </image>
         </ImageView>
-        <Button fx:id="homeButton" layoutX="552.0" layoutY="-1.0" mnemonicParsing="false" onAction="#homeButtonOnAction" prefHeight="26.0" prefWidth="28.0">
-            <graphic>
-            <ImageView fx:id="homeImgView" accessibleRole="BUTTON" fitHeight="54.0" fitWidth="32.0" pickOnBounds="true" preserveRatio="true">
-                <image>
-                    <Image url="@../../../../../../../../img/home_img-removebg-preview.png" />
-                </image>
-            </ImageView>
-            </graphic>
-        </Button>
+        <Button fx:id="homeButton" layoutX="25.0" layoutY="359.0" mnemonicParsing="false" onAction="#homeButtonOnAction" prefHeight="26.0" prefWidth="67.0" text="Home" />
         <Text fontSmoothingType="LCD" layoutX="5.0" layoutY="58.0" stroke="#070017" strokeType="OUTSIDE" strokeWidth="0.0" text="DOCTOR SCHEDULE" textAlignment="CENTER" wrappingWidth="608.7018432617188">
             <font>
                 <Font name="Swis721 WGL4 BT Bold" size="30.0" />

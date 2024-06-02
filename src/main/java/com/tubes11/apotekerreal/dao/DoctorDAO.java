@@ -13,8 +13,8 @@ public class DoctorDAO {
     private static Connection connection;
 
     // Constructor
-    public DoctorDAO(Connection connection) {
-        DoctorDAO.connection = connection;
+    public DoctorDAO() {
+        connection = Connector.getConnection();
     }
 
     public static void addDoctor(Doctor doctor) throws SQLException{
@@ -57,41 +57,107 @@ public class DoctorDAO {
         }
     }
 
-    public List<Doctor> getDoctorById (int idDoctor) throws SQLException{
-        List<Doctor> doctorsList = new ArrayList<>();
-        PreparedStatement statement = null;
-        ResultSet resultSet = null;
+    public List<Doctor> getAllDoctors() throws SQLException {
+        List<Doctor> doctorList = new ArrayList<>();
+        String query = "SELECT `d`.`nameDoctor`, `d`.`spesialis`, `j`.`jadwal`" + "FROM `doctor` `d`" + "JOIN `jadwal` `j` ON `d`.`idDoctor` = `j`.`idDoctor`";
 
-        try{
-            String quary = "SELECT * FROM doctor WHERE idDoctor = ?";
-            statement = connection.prepareStatement(quary);
-            statement.setInt(1, idDoctor);
-            resultSet = statement.executeQuery();
+        try {
+            PreparedStatement statement = connection.prepareStatement(query);
+            ResultSet resultSet = statement.executeQuery();
 
-            while(resultSet.next()) {
+            while (resultSet.next()) {
                 Doctor doctor = new Doctor();
-                doctor.setIdDoctor(resultSet.getInt("idDoctor"));
                 doctor.setDoctorName(resultSet.getString("nameDoctor"));
                 doctor.setSpecialization(resultSet.getString("spesialis"));
                 doctor.setDoctorScedule(resultSet.getString("jadwal"));
-                doctorsList.add(doctor);
+                doctor.setSelected(false); // initialize selected field to false
+                doctorList.add(doctor);
             }
-        } catch (SQLException e){
+            statement.close();
+            resultSet.close();
+
+            
+        } catch (SQLException e) {
             e.printStackTrace();
-        } finally{
-            if (resultSet != null) {
-                try{
-                    resultSet.close();
-                } catch (SQLException e){
-                    e.printStackTrace();
-                }
-            } if (statement != null) {
-                try{
-                    statement.close();
-                } catch (SQLException e){
-                    e.printStackTrace();
-                }
+        }
+        return doctorList;
+    }
+
+    public List<String> getAllSchedules() throws SQLException {
+        List<String> scheduleList = new ArrayList<>();
+        String query = "SELECT jadwal FROM jadwal";
+    
+        try {
+            PreparedStatement statement = connection.prepareStatement(query);
+            ResultSet resultSet = statement.executeQuery();
+    
+            while (resultSet.next()) {
+                String schedule = resultSet.getString("jadwal");
+                scheduleList.add(schedule);
             }
-        } return doctorsList;
+            statement.close();
+            resultSet.close();
+    
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return scheduleList;
+    }
+
+    public Doctor getDoctorByName(String name) throws SQLException {
+        String query = "SELECT * FROM doctor JOIN jadwal ON doctor.idDoctor = jadwal.idDoctor WHERE doctor.nameDoctor = ?";
+        PreparedStatement statement = connection.prepareStatement(query);
+        statement.setString(1, name);
+        ResultSet resultSet = statement.executeQuery();
+        Doctor doctor = null;
+        if (resultSet.next()) {
+            doctor = new Doctor();
+            doctor.setIdDoctor(resultSet.getInt("idDoctor"));
+            doctor.setDoctorName(resultSet.getString("nameDoctor"));
+            doctor.setSpecialization(resultSet.getString("spesialis"));
+            doctor.setDoctorScedule(resultSet.getString("jadwal"));
+        }
+        resultSet.close();
+        statement.close();
+        return doctor;
+    }
+
+    public void deleteDoctor(Doctor doctor) {
+        // First, remove all records from the jadwal table that reference this doctor
+        String query = "DELETE FROM jadwal WHERE idDoctor =?";
+        try (PreparedStatement ps = connection.prepareStatement(query)) {
+            ps.setInt(1, doctor.getIdDoctor());
+            ps.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    
+        // Then, delete the doctor
+        query = "DELETE FROM doctor WHERE idDoctor =?";
+        try (PreparedStatement ps = connection.prepareStatement(query)) {
+            ps.setInt(1, doctor.getIdDoctor());
+            ps.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+    public List<String> getAllDoctorsNames() throws SQLException {
+        List<String> doctorList = new ArrayList<>();
+        String query = "SELECT nameDoctor FROM doctor";
+
+        try {
+            PreparedStatement statement = connection.prepareStatement(query);
+            ResultSet resultSet = statement.executeQuery();
+
+            while (resultSet.next()) {
+                doctorList.add(resultSet.getString("nameDoctor"));
+            }
+            statement.close();
+            resultSet.close();
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return doctorList;
     }
 }

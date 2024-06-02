@@ -12,11 +12,11 @@
 <?import javafx.scene.paint.Stop?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #194be3;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.tubes11.apotekerreal.controller.ChangePriceDrugsController">
+<AnchorPane fx:id="bgImg" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #ffffff;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.tubes11.apotekerreal.controller.ChangePriceDrugsController">
     <children>
-      <ImageView fitHeight="400.0" fitWidth="600.0" pickOnBounds="true" smooth="false">
+      <ImageView fx:id="bgImgView" fitHeight="400.0" fitWidth="600.0" pickOnBounds="true" smooth="false">
          <image>
-            <Image url="@../../img/img_try.jpeg" />
+            <Image url="@../img/img_try.jpeg" />
          </image>
       </ImageView>
       <Label layoutX="225.0" layoutY="25.0" text="Drug's Data">
@@ -40,7 +40,7 @@
             </LinearGradient>
          </textFill>
       </Label>
-        <TextField fx:id="drugsNewPriceTextField" layoutX="125.0" layoutY="110.0" prefHeight="20.0" prefWidth="375.0" promptText="input drug's new price">
+        <TextField fx:id="drugsNewPriceTextField" layoutX="125.0" layoutY="110.0" onAction="#drugsNewPriceTextFieldOnAction" prefHeight="20.0" prefWidth="375.0" promptText="input drug's new price">
             <font>
                 <Font name="Arial" size="10.0" />
             </font>
@@ -55,8 +55,8 @@
             <Font name="Modern No. 20" size="15.0" />
          </font>
       </Label>
-        <ComboBox fx:id="drugsNameCombobox" layoutX="125.0" layoutY="75.0" prefHeight="20.0" prefWidth="375.0" promptText="Input Drug's name" />
-      <Button fx:id="changePriceADrugBackButton" layoutX="400.0" layoutY="320.0" mnemonicParsing="false" prefWidth="125.0" text="Back">
+        <ComboBox fx:id="drugsNameComboBox" layoutX="125.0" layoutY="75.0" onAction="#drugsNameComboBoxOnAction" prefHeight="20.0" prefWidth="375.0" promptText="Input Drug's name" />
+      <Button fx:id="changePriceADrugBackButton" layoutX="450.0" layoutY="323.0" mnemonicParsing="false" onAction="#changePriceADrugBackButtonOnAction" prefWidth="125.0" text="Back">
          <textFill>
             <LinearGradient endX="1.0" endY="1.0" startX="1.0" startY="0.24290218413440212">
                <stops>
@@ -74,7 +74,7 @@
             </LinearGradient>
          </textFill>
       </Button>
-      <Button fx:id="changePriceButton" layoutX="163.0" layoutY="225.0" mnemonicParsing="false" prefWidth="250.0" text="Change">
+      <Button fx:id="changePriceButton" layoutX="163.0" layoutY="225.0" mnemonicParsing="false" onAction="#changePriceButtonOnAction" prefWidth="250.0" text="Change">
          <textFill>
             <LinearGradient endX="1.0" endY="1.0" startX="1.0" startY="0.24290218413440212">
                <stops>
@@ -92,6 +92,6 @@
             </LinearGradient>
          </textFill>
       </Button>
-      <Button fx:id="changePriceADrugHomeButton" layoutX="558.0" layoutY="1.0" mnemonicParsing="false" prefHeight="39.0" prefWidth="42.0" />
+      <Button fx:id="changePriceADrugHomeButton" layoutX="454.0" layoutY="360.0" mnemonicParsing="false" onAction="#changePriceADrugHomeButtonOnAction" prefHeight="20.0" prefWidth="118.0" text="Home" />
     </children>
 </AnchorPane>

@@ -1,7 +1,7 @@
 package com.tubes11.apotekerreal.controller;
 
-import java.io.File;
 import java.io.IOException;
+import java.sql.SQLException;
 
 import javax.swing.JOptionPane;
 
@@ -15,82 +15,81 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
-import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
 
 public class AddDrugsController {
     @FXML
-    private ImageView bgImgVw;
+    private Button addDrugButton;
+    @FXML
+    private Button addDrugBackButton;
+    @FXML
+    private Button addDrugHomeButton;
+    @FXML
+    private TextField drugsNameTextField;
     @FXML
     private TextField drugsAmountTextField;
     @FXML
     private TextField drugsPriceTextField;
     @FXML
-    private TextField drugsNameTextField;
+    private Label drugsDataLabel;
     @FXML
-    private Button addDrugHomeButton;
-    @FXML
-    private Button addDrugBackButton;
-    @FXML
-    private Button addDrugButton;
-    
-    @FXML
-    // To show the Image BackGround
-    private void initialize(){
-        String file_dir = "src/main/resources/com/tubes11/apotekerreal/img/img_try.jpeg";
-        File file = new File(file_dir);
+    private ImageView homeImg;
 
-        Image bgImage = new Image(file.toURI().toString());
-        bgImgVw.setImage(bgImage);
+    private DrugDAO drugDAO;
+
+    public AddDrugsController() {
+        drugDAO = new DrugDAO();
     }
+
     @FXML
-    // Button Home
-    private void homeButtonOnAction(ActionEvent event) throws IOException{
-        FXMLLoader fxmlLoader = new FXMLLoader((getClass().getResource("/com/tubes11/apotekerreal/view/page/home.fxml")));
-        Parent root = fxmlLoader.load();
-        Stage stage = (Stage) addDrugHomeButton.getScene().getWindow();
-        stage.setScene(new Scene(root));
-        stage.show();
-    }
-    @FXML
-    // To TextField Controller Drug's Name
-    private void drugsNameTextFieldOnAction(ActionEvent event){
+    private void drugsNameTextFieldOnAction(ActionEvent event) {
         Stage stage = (Stage) drugsNameTextField.getScene().getWindow();
         stage.close();
     }
     @FXML
-    // To TextField Controller Drug's Amount
-    private void drugsAmountTextFieldOnAction(ActionEvent event){
+    private void drugAmountTextFieldOnAction(ActionEvent event){
         Stage stage = (Stage) drugsAmountTextField.getScene().getWindow();
         stage.close();
     }
     @FXML
-    // To TextField Controller Drug's price
     private void drugsPriceTextFieldOnAction(ActionEvent event){
-        Stage stage = (Stage) drugsPriceTextField.getScene().getWindow();
-        stage.close();
+        drugsPriceTextField.setText(drugsPriceTextField.getText().replaceAll("[^0-9]", ""));
     }
+
     @FXML
-    //To MESSAGE AFTER BUTTON ADD IN ACTION
-    private void addDrugButtonOnAction(ActionEvent event){
+    private void addDrugButtonOnAction(ActionEvent event) throws SQLException {
         String name = drugsNameTextField.getText();
-        String amountText = drugsAmountTextField.getText();
-        String priceText = drugsPriceTextField.getText();
-        int amount = Integer.parseInt(amountText);
-        double price = Double.parseDouble(priceText);
-        Drug data = new Drug(name, amount, price);
-        DrugDAO.addNewDrug(data);
-        JOptionPane.showMessageDialog(null, "OBAT BERHASIL DITAMBAHKAN", "ADD DRUGS SCEDULE MESSAGE", JOptionPane.INFORMATION_MESSAGE);
+        int amount = Integer.parseInt(drugsAmountTextField.getText());
+        double price = Double.parseDouble(drugsPriceTextField.getText());
+
+        Drug data = new Drug(0, name, amount, price);
+
+
+        try {
+            DrugDAO.addDrug(data);
+            JOptionPane.showMessageDialog(null, "Drug added successfully!", "Success", JOptionPane.INFORMATION_MESSAGE);
+            System.exit(0);
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(null, "Error adding drug: " + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+        }
     }
+
     @FXML
-    // Button Back Option Drugs
-    private void dSceduleBackButtonOnAction(ActionEvent event) throws IOException{
+    private void addDrugBackButtonOnAction(ActionEvent event) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/com/tubes11/apotekerreal/view/drug-page/drug-menu.fxml"));
         Parent root = fxmlLoader.load();
         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         stage.setScene(new Scene(root));
         stage.show();
+    }
+
+    @FXML
+    private void addDrugHomeButtonOnAction(ActionEvent event) throws IOException {
+        Stage stage = (Stage) addDrugHomeButton.getScene().getWindow();
+    
+        stage.close();
     }
 }

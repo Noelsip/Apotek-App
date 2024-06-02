@@ -3,6 +3,10 @@ package com.tubes11.apotekerreal.controller;
 import java.io.File;
 import java.io.IOException;
 
+import com.tubes11.apotekerreal.dao.Connector;
+import com.tubes11.apotekerreal.dao.LoginDAO;
+// import com.tubes11.apotekerreal.util.DatabaseConnection;
+
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -14,7 +18,6 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
 
-
 public class LoginController {
 
     @FXML
@@ -22,9 +25,9 @@ public class LoginController {
     @FXML
     private TextField nameTextField;
     @FXML
-    private TextField passwordField;
+    private TextField userNameTextField;
     @FXML
-    private TextField userIdTextField;
+    private TextField passwordField;
     @FXML
     private ImageView bgImageView;
 
@@ -37,10 +40,9 @@ public class LoginController {
         bgImageView.setImage(bgImage);
     }
 
-
     @FXML
-    private void userIdTextFieldOnAction(ActionEvent event){
-        Stage stage = (Stage) userIdTextField.getScene().getWindow();
+    private void userNameTextFieldOnAction(ActionEvent event){
+        Stage stage = (Stage) userNameTextField.getScene().getWindow();
         stage.close();
     }
     @FXML
@@ -55,11 +57,21 @@ public class LoginController {
     }
     @FXML
     private void loginButtonOnAction(ActionEvent event) throws IOException{
-        FXMLLoader fxmlLoader = new FXMLLoader((getClass().getResource("/com/tubes11/apotekerreal/view/page/home.fxml")));
-        Parent root = fxmlLoader.load();
-        Stage stage = (Stage) loginButton.getScene().getWindow();
-        stage.setScene(new Scene(root));
-        // stage.setTitle("Apoteker Real");
-        stage.show();
+        String fullName = nameTextField.getText();
+        String userId = userNameTextField.getText();
+        String password = passwordField.getText();
+
+        LoginDAO userDAO = new LoginDAO(Connector.getConnection());
+        if (userDAO.isValidUser(fullName, userId, password)) {
+            // user authenticated successfully, proceed to the next page
+            FXMLLoader fxmlLoader = new FXMLLoader((getClass().getResource("/com/tubes11/apotekerreal/view/page/home.fxml")));
+            Parent root = fxmlLoader.load();
+            Stage stage = (Stage) loginButton.getScene().getWindow();
+            stage.setScene(new Scene(root));
+            stage.show();
+        } else {
+            // authentication failed, display an error message
+            System.out.println("Invalid username or password");
+        }
     }
 }

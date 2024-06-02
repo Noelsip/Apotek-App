@@ -10,16 +10,16 @@
 <?import javafx.scene.paint.Stop?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #194be3;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.tubes11.apotekerreal.controller.DrugsController">
-    <children>
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #ffffff;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.tubes11.apotekerreal.controller.DrugsController">
+   <children>
       <ImageView fitHeight="400.0" fitWidth="600.0" pickOnBounds="true" smooth="false">
          <image>
-            <Image url="@../../img/apotek_try2.jpg" />
+            <Image url="@../../../../../../java/com/tubes11/apotekerreal/img/apotek_try2.jpg" />
          </image>
       </ImageView>
-      <Label layoutX="213.0" layoutY="50.0" text="Drug's Data">
+      <Label layoutX="200.0" layoutY="47.0" text="Drug's Data">
          <font>
-            <Font name="System Bold" size="25.0" />
+            <Font name="System Bold" size="36.0" />
          </font>
          <textFill>
             <LinearGradient endX="1.0" endY="1.0" startX="1.0" startY="0.24290218413440212">
@@ -38,95 +38,26 @@
             </LinearGradient>
          </textFill>
       </Label>
-        <Button fx:id="addDrugsButton" layoutX="180.0" layoutY="100.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="200.0" text="Add Drugs">
-         <textFill>
-            <LinearGradient endX="1.0" endY="1.0" startX="1.0" startY="0.23659305993690852">
-               <stops>
-                  <Stop>
-                     <color>
-                        <Color green="1.0" blue="0.8039215803146362" />
-                     </color>
-                  </Stop>
-                  <Stop offset="1.0">
-                     <color>
-                        <Color />
-                     </color>
-                  </Stop>
-               </stops>
-            </LinearGradient>
-         </textFill>
-        </Button>
-        <Button fx:id="drugsChangePriceButton" layoutX="180.0" layoutY="138.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="200.0" text="Change Price A Drug">
-         <textFill>
-            <LinearGradient endX="1.0" endY="1.0" startX="1.0" startY="0.23659305993690852">
-               <stops>
-                  <Stop>
-                     <color>
-                        <Color green="1.0" blue="0.8039215803146362" />
-                     </color>
-                  </Stop>
-                  <Stop offset="1.0">
-                     <color>
-                        <Color />
-                     </color>
-                  </Stop>
-               </stops>
-            </LinearGradient>
-         </textFill>
-        </Button>
-        <Button fx:id="drugsDeleteButton" layoutX="180.0" layoutY="175.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="200.0" text="Delete A Drug">
-         <textFill>
-            <LinearGradient endX="1.0" endY="1.0" startX="1.0" startY="0.23659305993690852">
-               <stops>
-                  <Stop>
-                     <color>
-                        <Color green="1.0" blue="0.8039215803146362" />
-                     </color>
-                  </Stop>
-                  <Stop offset="1.0">
-                     <color>
-                        <Color />
-                     </color>
-                  </Stop>
-               </stops>
-            </LinearGradient>
-         </textFill>
-        </Button>
-        <Button fx:id="drugsStockButton" layoutX="180.0" layoutY="213.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="200.0" text="Drug's Stock">
-         <textFill>
-            <LinearGradient endX="1.0" endY="1.0" startX="1.0" startY="0.23659305993690852">
-               <stops>
-                  <Stop>
-                     <color>
-                        <Color green="1.0" blue="0.8039215803146362" />
-                     </color>
-                  </Stop>
-                  <Stop offset="1.0">
-                     <color>
-                        <Color />
-                     </color>
-                  </Stop>
-               </stops>
-            </LinearGradient>
-         </textFill>
-        </Button>
-        <Button fx:id="backDrugsButton" layoutX="180.0" layoutY="250.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="200.0" text="Back">
-         <textFill>
-            <LinearGradient endX="1.0" endY="1.0" startX="1.0" startY="0.23659305993690852">
-               <stops>
-                  <Stop>
-                     <color>
-                        <Color green="1.0" blue="0.8039215803146362" />
-                     </color>
-                  </Stop>
-                  <Stop offset="1.0">
-                     <color>
-                        <Color />
-                     </color>
-                  </Stop>
-               </stops>
-            </LinearGradient>
-         </textFill>
-        </Button>
-    </children>
+      <Button fx:id="addDrugButton" alignment="CENTER" layoutX="168.0" layoutY="151.0" mnemonicParsing="false" onAction="#addDrugButtonOnAction" prefHeight="17.0" prefWidth="282.0" text="Add Drug" textAlignment="CENTER" textFill="#139692">
+         <font>
+            <Font name="Swis721 BT Roman" size="12.0" />
+         </font>
+      </Button>
+      <Button fx:id="changePrinceButton" layoutX="169.0" layoutY="241.0" mnemonicParsing="false" onAction="#changePrinceButtonOnAction" prefHeight="26.0" prefWidth="282.0" text="Change Prince" textFill="#139692">
+         <font>
+            <Font name="Swis721 BT Roman" size="12.0" />
+         </font>
+      </Button>
+      <Button fx:id="deleteDoctorButton" layoutX="170.0" layoutY="287.0" mnemonicParsing="false" onAction="#deleteDoctorButtonOnAction" prefHeight="26.0" prefWidth="282.0" text="Delete Doctor" textFill="#139692">
+         <font>
+            <Font name="Swis721 BT Roman" size="12.0" />
+         </font>
+      </Button>
+      <Button fx:id="backDoctorMenu" layoutX="202.0" layoutY="336.0" mnemonicParsing="false" onAction="#backDoctorMenuOnAction" prefHeight="26.0" prefWidth="215.0" text="Back" textFill="#139692" />
+      <Button fx:id="checkDrugButton" alignment="CENTER" layoutX="168.0" layoutY="194.0" mnemonicParsing="false" onAction="#checkDrugButtonOnAction" prefHeight="17.0" prefWidth="282.0" text="Check Drug" textAlignment="CENTER" textFill="#139692">
+         <font>
+            <Font name="Swis721 BT Roman" size="12.0" />
+         </font>
+      </Button>
+   </children>
 </AnchorPane>

@@ -39,47 +39,37 @@ public class HomeController {
     @FXML
     private void doctorsMFXButtonOnAction(ActionEvent event) throws IOException{
         FXMLLoader fxmlLoader = new FXMLLoader((getClass().getResource("/com/tubes11/apotekerreal/view/docter-page/docter-menu.fxml")));
-        // System.out.println("test");
         Parent root = fxmlLoader.load();
 
         Stage stage = new Stage();
-        // Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         stage.setTitle("Doctor");
         stage.setResizable(false);
         stage.initModality(Modality.APPLICATION_MODAL);
         stage.setScene(new Scene(root));
         stage.initOwner(((Node) event.getSource()).getScene().getWindow());
-        // stage.setTitle("Apoteker Real");
         stage.show();
     }
 
     @FXML
     private void drugMFXButtonOnAction (ActionEvent event) throws IOException{
-        Parent root = FXMLLoader.load(getClass().getResource("/com/tubes11/apotekerreal/view/drug-page/drug-menu.fxml"));
-        Stage stage = (Stage) drugMFXButton.getScene().getWindow();
+        FXMLLoader fxmlLoader = new FXMLLoader((getClass().getResource("/com/tubes11/apotekerreal/view/drug-page/drug-menu.fxml")));
+        Parent root = fxmlLoader.load();
+
+        Stage stage = new Stage();
+        stage.setTitle("Drug");
         stage.setResizable(false);
-        Scene scene = new Scene(root);
-        stage.setScene(scene);
+        stage.initModality(Modality.APPLICATION_MODAL);
+        stage.setScene(new Scene(root));
+        stage.initOwner(((Node) event.getSource()).getScene().getWindow());
+
         stage.show();
     }
-
-    @FXML
-    private void historyMFXButtonOnAction (ActionEvent event) throws IOException{
-        Parent root = FXMLLoader.load(getClass().getResource("/com/tubes11/apotekerreal/view/drug-page/drug-menu.fxml"));
-        Stage stage = (Stage) historyMFXButton.getScene().getWindow();
-        stage.setResizable(false);
-        Scene scene = new Scene(root);
-        stage.setScene(scene);
-        stage.show();
-    }
-
     @FXML
     private void backMFXButtonOnAction(ActionEvent event) throws IOException{
         FXMLLoader fxmlLoader = new FXMLLoader((getClass().getResource("/com/tubes11/apotekerreal/view/page/login.fxml")));
         Parent root = fxmlLoader.load();
         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         stage.setScene(new Scene(root));
-        // stage.setTitle("Apoteker Real");
         stage.show();
     }
 }

@@ -13,9 +13,9 @@
 
 <AnchorPane accessibleRole="TEXT_AREA" focusTraversable="true" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="408.0" prefWidth="607.0" style="-fx-background-color: #ffffff;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.tubes11.apotekerreal.controller.LoginController">
     <children>
-        <ImageView fx:id="bgImageView" fitHeight="408.0" fitWidth="643.0" pickOnBounds="true" preserveRatio="true">
+        <ImageView fx:id="bgImageView" fitHeight="408.0" fitWidth="643.0" layoutX="-4.0" layoutY="-1.0" pickOnBounds="true" preserveRatio="true">
             <image>
-                <Image url="@../../img/apotek_try2.jpg" />
+                <Image url="@../img/apotek_try2.png" />
             </image>
         </ImageView>
         <Label fx:id="titleLabel" layoutX="227.0" layoutY="28.0" text="LOGIN AKUN" textAlignment="CENTER" textFill="#139692" wrapText="true">
@@ -39,7 +39,7 @@
                 <Font name="Arial Bold" size="12.0" />
             </font>
         </Label>
-        <TextField fx:id="userIdTextField" layoutX="178.0" layoutY="206.0" onAction="#userIdTextFieldOnAction" prefHeight="26.0" prefWidth="258.0" promptText="Enter your Id" />
+        <TextField fx:id="userNameTextField" layoutX="178.0" layoutY="206.0" onAction="#userNameTextFieldOnAction" prefHeight="26.0" prefWidth="258.0" promptText="Enter your Id" />
         <PasswordField fx:id="passwordField" layoutX="178.0" layoutY="276.0" onAction="#passwordFieldOnAction" prefHeight="26.0" prefWidth="258.0" promptText="Enter your Password" />
         <Label fx:id="passwordLabel" alignment="TOP_CENTER" layoutX="255.0" layoutY="260.0" prefHeight="15.0" prefWidth="95.0" text="Password">
             <font>

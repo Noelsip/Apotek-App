@@ -1,122 +1,135 @@
 package com.tubes11.apotekerreal.controller;
 
-import java.io.File;
 import java.io.IOException;
+import java.sql.SQLException;
+import java.util.List;
+
+import com.tubes11.apotekerreal.dao.DoctorDAO;
+import com.tubes11.apotekerreal.model.Doctor;
+import com.tubes11.apotekerreal.model.Jadwal;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
-import javafx.scene.control.ChoiceBox;
-import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
+import javafx.scene.control.ComboBox;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
 import javafx.stage.Stage;
 
 public class CheckDoctorsController {
     @FXML
-    private ImageView sceduleImgView;
+    private Button homeButton, backButton;
     @FXML
-    private CheckBox checkBoxMonday,checkBoxTuesday,checkBoxWednesday,checkBoxThursday,checkBoxFriday;
+    private ComboBox<String> doctorNameComboBox;
     @FXML
-    private Button backButton;
+    private CheckBox seninCheckBox, selasaCheckBox, rabuCheckBox, kamisCheckBox, jumatCheckBox;
     @FXML
-    private Button homeButton;
+    private TableView<Jadwal> jadwalTableView;
     @FXML
-    private ImageView imgButtonHome;
+    private TableColumn<Jadwal, String> jadwalColumn;
     @FXML
-    private ChoiceBox<String> doctorNameChoiceBox;
-    private String[] doctorName = {"Noel", "Anugrah", "Faqih", "Satriya"};
-    
+    private TableColumn<Jadwal, CheckBox> checkBoxColumn;
 
-    @FXML
-    private void initialize1() {
-        String file_dir = "/com/tubes11/apotekerreal/img/docter_img.jpg";
-        File file = new File(file_dir);
+    private DoctorDAO doctorDAO;
+    private ObservableList<String> doctorNames;
 
-        Image bgImage = new Image(file.toURI().toString());
-        sceduleImgView.setImage(bgImage);
+    public CheckDoctorsController() {
+        doctorDAO = new DoctorDAO();
+        doctorNames = FXCollections.observableArrayList();
     }
 
     @FXML
-    private void doctorNameChoiceBoxOnAction(ActionEvent event){
+    public void initialize() {
+        doctorNameComboBox.setItems(doctorNames);
+        loadDoctorNames();
+
+    }
+
+    private void loadDoctorNames() {
+        try {
+            List<Doctor> doctors = doctorDAO.getAllDoctors();
+            for (Doctor doctor : doctors) {
+                doctorNames.add(doctor.getDoctorName());
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    @FXML
+    public void handleDoctorNameComboBoxAction() {
+        String selectedDoctorName = doctorNameComboBox.getSelectionModel().getSelectedItem();
+        if (selectedDoctorName != null) {
+            Doctor selectedDoctor = null;
+            try {
+                selectedDoctor = doctorDAO.getDoctorByName(selectedDoctorName);
+                selectedDoctor.setSelected(true); // Set the selected field to true
+                System.out.println("Doctor name: " + selectedDoctor.getDoctorName());
+                String doctorSchedule = selectedDoctor.getDoctorScedule();
+                System.out.println("Doctor schedule: " + doctorSchedule);
+                checkCheckboxes(doctorSchedule);
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+
+    private void checkCheckboxes(String doctorScedule) {
+        String[] days = doctorScedule.split(",");
+        clearCheckboxes();
+        for (String day : days) {
+            switch (day) {
+                case "Senin":
+                    seninCheckBox.setSelected(isDaySelectedInJadwal(true));
+                    break;
+                case "Selasa":
+                    selasaCheckBox.setSelected(isDaySelectedInJadwal(true));
+                    break;
+                case "Rabu":
+                    rabuCheckBox.setSelected(isDaySelectedInJadwal(true));
+                    break;
+                case "Kamis":
+                    kamisCheckBox.setSelected(isDaySelectedInJadwal(true));
+                    break;
+                case "Jumat":
+                    jumatCheckBox.setSelected(isDaySelectedInJadwal(true));
+                    break;
+            }
+        }
+    }
+
+    private boolean isDaySelectedInJadwal(boolean b) {
+        // TODO Auto-generated method stub
         
-        ObservableList<String> doctorName = FXCollections.observableArrayList();
-        doctorName.addAll(this.doctorName);
-        doctorNameChoiceBox.setItems(doctorName);
+        throw new UnsupportedOperationException("Unimplemented method 'isDaySelectedInJadwal'");
     }
 
-    @FXML
-    public void receiveCheckState(CheckBox checkBoxMonday, CheckBox checkBoxTuesday, CheckBox checkBoxWednesday, CheckBox checkBoxThursday, CheckBox checkBoxFriday){
-        this.checkBoxMonday = checkBoxMonday;
-        this.checkBoxTuesday = checkBoxTuesday;
-        this.checkBoxWednesday = checkBoxWednesday;
-        this.checkBoxThursday = checkBoxThursday;
-        this.checkBoxFriday = checkBoxFriday;
+    private void clearCheckboxes() {
+        seninCheckBox.setSelected(false);
+        selasaCheckBox.setSelected(false);
+        rabuCheckBox.setSelected(false);
+        kamisCheckBox.setSelected(false);
+        jumatCheckBox.setSelected(false);
     }
-    @FXML
-    private void checkBoxMondayOnAction(){
-        if(checkBoxMonday.isSelected()){
-            System.out.println("Monday Selected");
-        }else{
-            System.out.println("Monday Selected is Cancel");
-        }
-    }
-    @FXML
-    private void checkBoxTuesdayOnAction(){
-        if(checkBoxMonday.isSelected()){
-            System.out.println("Tuesday Selected");
-        }else{
-            System.out.println("Tuesday Selected is Cancel");
-        }
-    }
-    @FXML
-    private void checkBoxWednesdayOnAction(){
-        if(checkBoxMonday.isSelected()){
-            System.out.println("Wednesday Selected");
-        }else{
-            System.out.println("Wednesday Selected is Cancel");
-        }
-    }
-    @FXML
-    private void checkBoxThursdayOnAction(){
-        if(checkBoxMonday.isSelected()){
-            System.out.println("Thursday Selected");
-        }else{
-            System.out.println("Thursday Selected is Cancel");
-        }
-    }
-    @FXML
-    private void checkBoxFridayOnAction(){
-        if(checkBoxMonday.isSelected()){
-            System.out.println("Friday Selected");
-        }else{
-            System.out.println("Friday Selected is Cancel");
-        }
-    }
-    @FXML
-    private void backButtonOnAction(ActionEvent event) throws IOException{
-        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/com/tubes11/apotekerreal/view/docter-page/docter-menu.fxml"));
-        Parent root = fxmlLoader.load();
-        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-        stage.setScene(new Scene(root));
-        stage.show();
-        String file_dir = "/com/tubes11/apotekerreal/img/home.jpg";
-        File file = new File(file_dir);
 
-        Image bgImage = new Image(file.toURI().toString());
-        imgButtonHome.setImage(bgImage);
-    }
     @FXML
     private void homeButtonOnAction(ActionEvent event) throws IOException{
-        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/com/tubes11/apotekerreal/view/page/home.fxml"));
+        Stage stage = (Stage) homeButton.getScene().getWindow();
+    
+        stage.close();
+    }
+
+    @FXML
+    private void backButtonOnAction(ActionEvent event) throws IOException{
+        FXMLLoader fxmlLoader = new FXMLLoader((getClass().getResource("/com/tubes11/apotekerreal/view/docter-page/docter-menu.fxml")));
         Parent root = fxmlLoader.load();
-        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        Stage stage = (Stage) homeButton.getScene().getWindow();
         stage.setScene(new Scene(root));
         stage.show();
     }

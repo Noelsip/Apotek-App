@@ -56,12 +56,12 @@
             <Font name="Arial" size="10.0" />
          </font>
       </TextField>
-      <Label layoutX="25.0" layoutY="175.0" text="Amount:">
+      <Label layoutX="25.0" layoutY="175.0" text="Amount">
          <font>
             <Font name="Modern No. 20" size="15.0" />
          </font>
       </Label>
-      <TextField fx:id="amountTextField" layoutX="125.0" layoutY="172.0" prefHeight="26.0" prefWidth="375.0">
+      <TextField fx:id="drugAmountTextField" layoutX="125.0" layoutY="172.0" prefHeight="26.0" prefWidth="375.0">
          <font>
             <Font name="Arial" size="10.0" />
          </font>

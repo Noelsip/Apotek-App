@@ -1,81 +1,110 @@
 package com.tubes11.apotekerreal.controller;
 
-import java.io.File;
 import java.io.IOException;
-
-import javax.swing.JOptionPane;
+import java.sql.SQLException;
+import java.util.List;
 
 import com.tubes11.apotekerreal.dao.DrugDAO;
 import com.tubes11.apotekerreal.model.Drug;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
-import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
 
 public class ChangePriceDrugsController {
+
     @FXML
-    private ImageView priceImageView;
+    private ComboBox<String> drugsNameComboBox;
+    @FXML
+    private Button changePriceADrugBackButton, changePriceADrugHomeButton, changePriceButton;
     @FXML
     private TextField drugsNewPriceTextField;
-    @FXML
-    private ComboBox drugsNameCombobox;
-    @FXML
-    private Button changePriceADrugBackButton;
-    @FXML
-    private Button changePriceButton;
-    @FXML
-    private Button changePriceADrugHomeButton;
+
+    private DrugDAO drugDAO;
+    private ObservableList<String> drugsNameList;
+
+    public ChangePriceDrugsController() {
+        drugDAO = new DrugDAO();
+        drugsNameList = FXCollections.observableArrayList();
+    }
 
     @FXML
-    private void initialize(){
-        String file_dir = "src/main/resources/com/tubes11/apotekerreal/img/img_try.jpeg";
-        File file = new File(file_dir);
+    public void initialize() throws SQLException {
+        ObservableList<String> drugNames = FXCollections.observableArrayList();
+        List<Drug> drugs = drugDAO.getAllDrugs();
+        for (Drug drug : drugs) {
+            drugNames.add(drug.getNamaObat());
+        }
+        drugsNameComboBox.setItems(drugNames);
+    }
 
-        Image bgImage = new Image(file.toURI().toString());
-        priceImageView.setImage(bgImage);
-    }
     @FXML
-    private void drugsNameComboboxOnAction(ActionEvent event){
-        Stage stage = (Stage) drugsNameCombobox.getScene().getWindow();
-        stage.close();
+private void drugsNameComboBoxOnAction(ActionEvent event) throws SQLException{
+    String selectedDrugName = drugsNameComboBox.getSelectionModel().getSelectedItem();
+    if (selectedDrugName!= null) {
+        List<Drug> drugs = drugDAO.getDrugByName(selectedDrugName);
+        if (!drugs.isEmpty()) {
+            Drug selectedDrug = drugs.get(0);
+            drugsNewPriceTextField.setText(String.valueOf(selectedDrug.getHargaObat()));
+        }
     }
+}
+
+    @FXML
     private void drugsNewPriceTextFieldOnAction(ActionEvent event){
         Stage stage = (Stage) drugsNewPriceTextField.getScene().getWindow();
         stage.close();
     }
+
     @FXML
-    private void changePriceButtonOnAction(ActionEvent event){
-        String name = drugsNameCombobox.getSelectionModel().getSelectedItem().toString();
-        int jumlahObat = Drug.getJumlahObat(name);
-        String newPriceText = drugsNewPriceTextField.getText();
-        Double newPrice = Double.parseDouble(newPriceText);
-        Drug data = new Drug(name, jumlahObat , newPrice );
-        DrugDAO.addNewDrug(data);
-        JOptionPane.showMessageDialog(null, "HARGA BERHASIL DIGANTI", "CHANGE DRUG'S PRICE MESSAGE", JOptionPane.INFORMATION_MESSAGE);
+    public void changePriceButtonOnAction(ActionEvent event) throws SQLException {
+        try {
+            String drugName = drugsNameComboBox.getValue();
+            double newPrice = Double.parseDouble(drugsNewPriceTextField.getText());
+            Drug drug = new Drug();
+            drug.setNamaObat(drugName);
+            drug.setHargaObat(newPrice);
+            drugDAO.updateDrug(drug);
+
+            // Show success message box
+            Alert successAlert = new Alert(AlertType.INFORMATION);
+            successAlert.setHeaderText("Price Update Successful");
+            successAlert.setContentText("The price of the drug has been updated successfully.");
+            successAlert.showAndWait();
+            System.exit(0);
+        } catch (SQLException e) {
+            // Show error message box
+            Alert errorAlert = new Alert(AlertType.ERROR);
+            errorAlert.setHeaderText("Error Updating Price");
+            errorAlert.setContentText("Error updating the price of the drug: " + e.getMessage());
+            errorAlert.showAndWait();
+        }
     }
+
     @FXML
-    private void changePriceADrugBackButtonOnAction(ActionEvent event) throws IOException{
+    public void changePriceADrugBackButtonOnAction(ActionEvent event) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/com/tubes11/apotekerreal/view/drug-page/drug-menu.fxml"));
         Parent root = fxmlLoader.load();
         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         stage.setScene(new Scene(root));
         stage.show();
     }
+
     @FXML
-    private void changePriceADrugHomeButtonOnAction(ActionEvent event) throws IOException{
-        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/com/tubes11/apotekerreal/view/page/home.fxml"));
-        Parent root = fxmlLoader.load();
-        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-        stage.setScene(new Scene(root));
-        stage.show();
+    public void changePriceADrugHomeButtonOnAction(ActionEvent event) throws IOException {
+        Stage stage = (Stage) changePriceADrugHomeButton.getScene().getWindow();
+    
+        stage.close();
     }
 }

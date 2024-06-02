@@ -24,5 +24,3 @@ public class MainApp extends Application {
         launch();
     }
 }
-
-// Buat message box setiap centang checkbox

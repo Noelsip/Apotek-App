@@ -13,98 +13,98 @@
 
 <AnchorPane prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #ffffff;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.tubes11.apotekerreal.controller.AddDrugsController">
     <children>
-      <ImageView fitHeight="400.0" fitWidth="600.0" pickOnBounds="true" smooth="false">
+      <ImageView fitHeight="400.0" fitWidth="600.0" layoutY="-1.0" pickOnBounds="true" smooth="false">
          <image>
-            <Image url="@../../img/img_try.jpeg" />
+            <Image url="@../../../../../../java/com/tubes11/apotekerreal/img/apotek_try2.jpg" />
          </image>
       </ImageView>
-        <TextField fx:id="drugsAmountTextField" layoutX="125.0" layoutY="100.0" prefHeight="20.0" prefWidth="375.0" promptText="input drug's amount">
-            <font>
-                <Font name="Arial" size="10.0" />
-            </font>
-        </TextField>
-        <TextField fx:id="drugsPriceTextField" layoutX="125.0" layoutY="125.0" prefHeight="20.0" prefWidth="375.0" promptText="input drug's price">
-            <font>
-                <Font name="Arial" size="10.0" />
-            </font>
-        </TextField>
-        <Label layoutX="25.0" layoutY="75.0" text="Name             :">
-            <font>
-                <Font name="Modern No. 20" size="15.0" />
-            </font>
-        </Label>
-        <Label layoutX="25.0" layoutY="100.0" text="Amount         :">
-            <font>
-                <Font name="Modern No. 20" size="15.0" />
-            </font>
-        </Label>
-        <Label layoutX="25.0" layoutY="125.0" text="Price             :">
-            <font>
-                <Font name="Modern No. 20" size="15.0" />
-            </font>
-        </Label>
-        <Label layoutX="225.0" layoutY="25.0" text="Drug's Data">
-            <font>
-                <Font name="System Bold" size="21.0" />
-            </font>
-         <textFill>
-            <LinearGradient endX="1.0" endY="1.0" startX="1.0" startY="0.24290218413440212">
-               <stops>
-                  <Stop>
-                     <color>
-                        <Color green="1.0" blue="0.8039215803146362" />
-                     </color>
-                  </Stop>
-                  <Stop offset="1.0">
-                     <color>
-                        <Color />
-                     </color>
-                  </Stop>
-               </stops>
-            </LinearGradient>
-         </textFill>
-        </Label>
-        <Button fx:id="addDrugButton" layoutX="163.0" layoutY="225.0" mnemonicParsing="false" prefWidth="250.0" text="Add Drug">
-         <textFill>
-            <LinearGradient endX="1.0" endY="1.0" startX="1.0" startY="0.24290218413440212">
-               <stops>
-                  <Stop>
-                     <color>
-                        <Color green="1.0" blue="0.8039215803146362" />
-                     </color>
-                  </Stop>
-                  <Stop offset="1.0">
-                     <color>
-                        <Color />
-                     </color>
-                  </Stop>
-               </stops>
-            </LinearGradient>
-         </textFill>
-        </Button>
-        <Button fx:id="addDrugBackButton" layoutX="400.0" layoutY="320.0" mnemonicParsing="false" prefWidth="125.0" text="Back">
-         <textFill>
-            <LinearGradient endX="1.0" endY="1.0" startX="1.0" startY="0.24290218413440212">
-               <stops>
-                  <Stop>
-                     <color>
-                        <Color green="1.0" blue="0.8039215803146362" />
-                     </color>
-                  </Stop>
-                  <Stop offset="1.0">
-                     <color>
-                        <Color />
-                     </color>
-                  </Stop>
-               </stops>
-            </LinearGradient>
-         </textFill>
-        </Button>
-      <Button fx:id="addDrugHomeButton" layoutX="558.0" layoutY="1.0" mnemonicParsing="false" prefHeight="39.0" prefWidth="42.0" />
-      <TextField fx:id="drugsNameTextField" layoutX="125.0" layoutY="75.0" prefHeight="20.0" prefWidth="375.0" promptText="input drug's name">
+      <Button fx:id="addDrugHomeButton" layoutX="300.0" layoutY="351.0" mnemonicParsing="false" onAction="#addDrugHomeButtonOnAction" prefHeight="16.0" prefWidth="108.0" text="Home" />
+      <TextField fx:id="drugsNameTextField" layoutX="125.0" layoutY="104.0" onAction="#drugsNameTextFieldOnAction" prefHeight="31.0" prefWidth="375.0" promptText="input drug's name">
          <font>
             <Font name="Arial" size="10.0" />
          </font>
       </TextField>
+        <Label layoutX="25.0" layoutY="112.0" text="Name             :">
+            <font>
+                <Font name="Modern No. 20" size="15.0" />
+            </font>
+        </Label>
+        <Label layoutX="25.0" layoutY="156.0" prefHeight="16.0" prefWidth="94.0" text="Amount         :">
+            <font>
+                <Font name="Modern No. 20" size="15.0" />
+            </font>
+        </Label>
+        <TextField fx:id="drugsAmountTextField" layoutX="125.0" layoutY="148.0" onAction="#drugAmountTextFieldOnAction" prefHeight="31.0" prefWidth="375.0" promptText="input drug's amount">
+            <font>
+                <Font name="Arial" size="10.0" />
+            </font>
+        </TextField>
+        <Label layoutX="26.0" layoutY="195.0" text="Price             :">
+            <font>
+                <Font name="Modern No. 20" size="15.0" />
+            </font>
+        </Label>
+        <TextField fx:id="drugsPriceTextField" layoutX="125.0" layoutY="190.0" onAction="#drugsPriceTextFieldOnAction" prefHeight="31.0" prefWidth="375.0" promptText="input drug's price">
+            <font>
+                <Font name="Arial" size="10.0" />
+            </font>
+        </TextField>
+        <Label layoutX="235.0" layoutY="39.0" prefHeight="39.0" prefWidth="154.0" text="Drug's Data">
+            <font>
+                <Font name="System Bold" size="24.0" />
+            </font>
+         <textFill>
+            <LinearGradient endX="1.0" endY="1.0" startX="1.0" startY="0.24290218413440212">
+               <stops>
+                  <Stop>
+                     <color>
+                        <Color green="1.0" blue="0.8039215803146362" />
+                     </color>
+                  </Stop>
+                  <Stop offset="1.0">
+                     <color>
+                        <Color />
+                     </color>
+                  </Stop>
+               </stops>
+            </LinearGradient>
+         </textFill>
+        </Label>
+        <Button fx:id="addDrugButton" layoutX="187.0" layoutY="263.0" mnemonicParsing="false" onAction="#addDrugButtonOnAction" prefWidth="250.0" text="Add Drug">
+         <textFill>
+            <LinearGradient endX="1.0" endY="1.0" startX="1.0" startY="0.24290218413440212">
+               <stops>
+                  <Stop>
+                     <color>
+                        <Color green="1.0" blue="0.8039215803146362" />
+                     </color>
+                  </Stop>
+                  <Stop offset="1.0">
+                     <color>
+                        <Color />
+                     </color>
+                  </Stop>
+               </stops>
+            </LinearGradient>
+         </textFill>
+        </Button>
+        <Button fx:id="addDrugBackButton" layoutX="460.0" layoutY="351.0" mnemonicParsing="false" onAction="#addDrugButtonOnAction" prefWidth="125.0" text="Back">
+         <textFill>
+            <LinearGradient endX="1.0" endY="1.0" startX="1.0" startY="0.24290218413440212">
+               <stops>
+                  <Stop>
+                     <color>
+                        <Color green="1.0" blue="0.8039215803146362" />
+                     </color>
+                  </Stop>
+                  <Stop offset="1.0">
+                     <color>
+                        <Color />
+                     </color>
+                  </Stop>
+               </stops>
+            </LinearGradient>
+         </textFill>
+        </Button>
     </children>
 </AnchorPane>

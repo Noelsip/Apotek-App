@@ -6,7 +6,6 @@ public abstract class Entity {
     public String doctorScedule;
 
     public Entity(){
-
     }
 
     public Entity(String doctorName, String specialization, String doctorScedule){

@@ -61,10 +61,8 @@ public class DoctorController {
     }
     @FXML
     private void backDoctorMenuOnAction(ActionEvent event) throws IOException{
-        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/com/tubes11/apotekerreal/view/page/home.fxml"));
-        Parent root = fxmlLoader.load();
         Stage stage = (Stage) backDoctorMenu.getScene().getWindow();
-        stage.setScene(new Scene(root));
-        stage.show();
+    
+        stage.close();
     }
 }

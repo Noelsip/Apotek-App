@@ -6,11 +6,13 @@ import java.util.List;
 public class Doctor extends Entity {
     private int idDoctor;
     private int idScedule;
+    private boolean selected;
     private ArrayList<String> selectedDays;
     private static List<Doctor> doctors;
 
-    public Doctor(int idDoctor,int idScedule, String doctorName, String specialization, String doctorScedule, ArrayList<String> selectedDays) {
+    public Doctor(int idDoctor,int idScedule, String doctorName, String specialization, String doctorScedule,Boolean selected, ArrayList<String> selectedDays) {
         super(doctorName, specialization, doctorScedule);
+        this.selected = false;
         this.idDoctor = idDoctor;
         this.idScedule = idScedule;
         this.selectedDays = selectedDays;
@@ -33,6 +35,14 @@ public class Doctor extends Entity {
         return idScedule;
     }
 
+    public void setSelected(boolean selected) {
+        this.selected = selected;
+    }
+
+    public boolean isSelected() {
+        return selected;
+    }
+
     public void setIdDoctor(int idDoctor){
         this.idDoctor = idDoctor;
     }
@@ -52,7 +62,6 @@ public class Doctor extends Entity {
     static {
         doctors = new ArrayList<>();
     }
-    
 
 }
 
