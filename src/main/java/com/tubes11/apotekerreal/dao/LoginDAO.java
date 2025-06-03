@@ -13,7 +13,7 @@ public class LoginDAO {
     }
 
     public boolean isValidUser(String fullName, String userName, String password) {
-        String query = "SELECT * FROM user WHERE fullName =? AND userName =? AND password =?";
+        String query = "SELECT * FROM login_table WHERE nama_lengkap =? AND username =? AND password =?";
         try (PreparedStatement statement = connection.prepareStatement(query)) {
             statement.setString(1, fullName);
             statement.setString(2, userName);
